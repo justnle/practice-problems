@@ -13,15 +13,10 @@ It is guaranteed that the insertion operations will be valid.
 */
 
 const createTargetArray = (nums, index) => {
-    let answer = [];
-    if (nums.length === 100) {
-        answer = [0, 0];
-    }
+    const answer = [];
 
     for (let j = 0; j < index.length; ++j) {
-        !answer[index[j]]
-            ? (answer[index[j]] = nums[j])
-            : answer.splice(index[j], 0, nums[j]);
+        answer.splice(index[j], 0, nums[j]);
     }
     return answer;
 };
