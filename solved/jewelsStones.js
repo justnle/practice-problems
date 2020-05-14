@@ -31,7 +31,6 @@ type of stone from "A".
 const numJewelsInStones = (J, S) => {
     const jewelMap = J.split(``).reduce((obj, j) => {
         obj[j] = true;
-        console.log(obj);
         return obj;
     }, {});
     return S.split(``).reduce(
