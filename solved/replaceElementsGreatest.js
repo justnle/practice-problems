@@ -7,18 +7,35 @@ with -1.
 
 After doing so, return the array.
 */
+// const replaceElements = (arr) => {
+//     const answer = [];
+//     const len = arr.length - 1;
+
+//     for (let i = 0; i < len; ++i) {
+//         arr.shift();
+//         answer.push(Math.max(...arr));
+//     }
+//     answer.push(-1);
+//     return answer;
+// };
+// 460ms and 38.8mb, 23.81% faster
+
 const replaceElements = (arr) => {
     const answer = [];
-    const len = arr.length - 1;
+    const revArr = [];
 
-    for (let i = 0; i < len; ++i) {
-        arr.shift();
-        answer.push(Math.max(...arr));
+    for (let i = arr.length - 1; i >= 0; --i) {
+        revArr.push(arr[i]);
+    }
+
+    for (let i = 0; i < arr.length - 1; ++i) {
+        revArr.pop();
+        answer.push(Math.max(...revArr));
     }
     answer.push(-1);
     return answer;
 };
-// 460ms and 38.8mb, 23.81% faster
+// 448ms and 40.2mb, 24.27% faster
 
 /*
 pseudocode
