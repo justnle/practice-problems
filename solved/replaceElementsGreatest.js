@@ -21,21 +21,19 @@ After doing so, return the array.
 // 460ms and 38.8mb, 23.81% faster
 
 const replaceElements = (arr) => {
-    const answer = [];
-    const revArr = [];
+    let max = -1;
+    let cur;
 
     for (let i = arr.length - 1; i >= 0; --i) {
-        revArr.push(arr[i]);
+        cur = arr[i];
+        arr[i] = max;
+        if (cur > max) {
+            max = cur;
+        }
     }
-
-    for (let i = 0; i < arr.length - 1; ++i) {
-        revArr.pop();
-        answer.push(Math.max(...revArr));
-    }
-    answer.push(-1);
-    return answer;
+    return arr;
 };
-// 448ms and 40.2mb, 24.27% faster
+// 76ms and 37.8mb, 87.71% faster
 
 /*
 pseudocode
