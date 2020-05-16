@@ -46,35 +46,30 @@ return the largest sum as answer
 */
 
 const minTimeToVisitAllPoints = (points) => {
-    const arrOne = [];
-    const arrTwo = [];
-    let arrOneDiff = 0;
-    let arrTwoDiff = 0;
+    let difference = 0;
 
-    for (const point of points) {
-        arrOne.push(point[0]);
-        arrTwo.push(point[1]);
+    for (let i = 0; i < points.length - 1; ++i) {
+        const xDiff = Math.abs(points[i + 1][0] - points[i][0]);
+        const yDiff = Math.abs(points[i + 1][1] - points[i][1]);
+
+        if (xDiff > yDiff) {
+            difference += xDiff;
+        } else {
+            difference += yDiff;
+        }
     }
-
-    for (let i = 0; i < arrOne.length - 1; ++i) {
-        arrOneDiff += Math.abs(arrOne[i] - arrOne[i + 1]);
-    }
-
-    for (let i = 0; i < arrTwo.length - 1; ++i) {
-        arrTwoDiff += Math.abs(arrTwo[i] - arrTwo[i + 1]);
-    }
-
-    console.log(arrOneDiff);
-    console.log(arrTwoDiff);
-
-    // if (arrTwoDiff === 0) {
-    //     console.log(arrOneDiff);
-    //     return arrOneDiff;
-    // } else {
-    //     console.log(arrTwoDiff + arrOneDiff);
-    //     return arrTwoDiff;
-    // }
+    return difference;
 };
+// 80ms and 34.6mb, 17.86% faster
+
+/*
+pseudocode
+
+for loop points array
+subtract first (x,y) from next (x,y)
+whatever number is larger
+add to the difference
+*/
 
 minTimeToVisitAllPoints([
     [1, 1],
