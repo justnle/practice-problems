@@ -45,22 +45,34 @@ reduce both arrays by subtraction
 return the largest sum as answer
 */
 
+// const minTimeToVisitAllPoints = (points) => {
+//     let difference = 0;
+
+//     for (let i = 0; i < points.length - 1; ++i) {
+//         const xDiff = Math.abs(points[i + 1][0] - points[i][0]);
+//         const yDiff = Math.abs(points[i + 1][1] - points[i][1]);
+
+//         if (xDiff > yDiff) {
+//             difference += xDiff;
+//         } else {
+//             difference += yDiff;
+//         }
+//     }
+//     return difference;
+// };
+// 80ms and 34.6mb, 17.86% faster
+
 const minTimeToVisitAllPoints = (points) => {
     let difference = 0;
 
     for (let i = 0; i < points.length - 1; ++i) {
         const xDiff = Math.abs(points[i + 1][0] - points[i][0]);
         const yDiff = Math.abs(points[i + 1][1] - points[i][1]);
-
-        if (xDiff > yDiff) {
-            difference += xDiff;
-        } else {
-            difference += yDiff;
-        }
+        difference += Math.max(xDiff, yDiff);
     }
     return difference;
 };
-// 80ms and 34.6mb, 17.86% faster
+// 68ms and 34.8mb, 25.24% faster
 
 /*
 pseudocode
