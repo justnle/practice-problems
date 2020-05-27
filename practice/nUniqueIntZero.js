@@ -33,6 +33,19 @@ const sumZero = (n) => {
 };
 // 64ms, faster than 43.77% and 36.4mb
 
+/* cleaner code but slower..
+    const sumArr = [];
+
+    if (n % 2 === 1) {
+        sumArr.push(0);
+    }
+
+    for (let i = 1; i <= n / 2; ++i) {
+        sumArr.push(i, -i);
+    }
+    return sumArr;
+*/
+
 /*
 pseudocode
 n = how many unique numbers
