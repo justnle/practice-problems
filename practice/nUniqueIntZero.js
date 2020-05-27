@@ -12,9 +12,7 @@ const sumZero = (n) => {
     const createArr = (length) => {
         for (let i = 0; sumArr.length < length; ++i) {
             let randomNum = Math.floor(Math.random() * 9);
-            if (randomNum > 0) {
-                randomNum *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
-            }
+            randomNum *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
 
             if (!sumArr.includes(randomNum)) {
                 sumArr.push(randomNum);
