@@ -6,41 +6,11 @@ The returned string must contain only lowercase English letters.
 If there are multiples valid strings, return any of them.
 */
 
-// const generateTheString = (n) => {
-//     let largestOdd;
-//     let checkEven = false;
-//     let str = ``;
-
-//     if (n === 1) {
-//         return `a`;
-//     }
-
-//     if (n % 2 === 0) {
-//         largestOdd = n - 1;
-//         checkEven = true;
-//     } else {
-//         largestOdd = n - 2;
-//     }
-
-//     for (let i = 0; i < largestOdd; ++i) {
-//         str += `a`;
-//     }
-
-//     if (checkEven) {
-//         return (str += `b`);
-//     } else {
-//         return (str += `bc`);
-//     }
-// };
-// 68ms and 18.98% faster, 35.6mb
-
 const generateTheString = (n) => {
-    let str = ``;
+    let str = `a`;
 
     if (n % 2 === 0) {
-        str += `b`;
-    } else {
-        str += `a`;
+        str = `b`;
     }
 
     for (let i = 0; i < n - 1; ++i) {
@@ -48,7 +18,7 @@ const generateTheString = (n) => {
     }
     return str;
 };
-// 72ms and 17.06% faster, 35.7mb
+// 60ms and 42.43% faster, 35.6mb
 
 /*
 pseudocode
