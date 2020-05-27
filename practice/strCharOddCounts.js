@@ -7,67 +7,48 @@ If there are multiples valid strings, return any of them.
 */
 
 // const generateTheString = (n) => {
-//     const alphabet = `abcdefghijklmnopqrstuvwxyz`;
-//     const splitAlphabet = alphabet.split(``);
+//     let largestOdd;
+//     let checkEven = false;
 //     let str = ``;
 
 //     if (n === 1) {
-//         const randomIndex = Math.floor(Math.random() * splitAlphabet.length);
-//         const randomLetter = splitAlphabet[randomIndex];
-//         str += randomLetter;
-//         return str;
+//         return `a`;
 //     }
 
-//     while (str.length !== n) {
-//         const randomIndex = Math.floor(Math.random() * splitAlphabet.length);
-//         let randomLetter = splitAlphabet[randomIndex];
-
-//         if (!str.includes(randomLetter)) {
-//             str += randomLetter;
-//         } else if (str.includes(randomLetter) && str.length + 2 <= n) {
-//             randomLetter += randomLetter;
-//             str += randomLetter;
-//         }
+//     if (n % 2 === 0) {
+//         largestOdd = n - 1;
+//         checkEven = true;
+//     } else {
+//         largestOdd = n - 2;
 //     }
-//     return str;
+
+//     for (let i = 0; i < largestOdd; ++i) {
+//         str += `a`;
+//     }
+
+//     if (checkEven) {
+//         return (str += `b`);
+//     } else {
+//         return (str += `bc`);
+//     }
 // };
-// this solutio takes too long
-
-/*
-pseudocode
-string.length === n
-char % 2 !== 0
-char < n
-
-*/
+// 68ms and 18.98% faster, 35.6mb
 
 const generateTheString = (n) => {
-    let largestOdd;
-    let checkEven = false;
     let str = ``;
 
-    if (n === 1) {
-        return `a`;
-    }
-
     if (n % 2 === 0) {
-        largestOdd = n - 1;
-        checkEven = true;
+        str += `b`;
     } else {
-        largestOdd = n - 2;
-    }
-
-    for (let i = 0; i < largestOdd; ++i) {
         str += `a`;
     }
 
-    if (checkEven) {
-        return (str += `b`);
-    } else {
-        return (str += `bc`);
+    for (let i = 0; i < n - 1; ++i) {
+        str += `a`;
     }
+    return str;
 };
-// 68ms and 18.98% faster, 35.6mb
+// 72ms and 17.06% faster, 35.7mb
 
 /*
 pseudocode
