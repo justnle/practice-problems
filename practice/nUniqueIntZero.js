@@ -7,31 +7,38 @@ that they add up to 0.
 
 const sumZero = (n) => {
     const sumArr = [];
-    const reducer = (a, b) => a + b;
-
-    const createArr = (length) => {
-        for (let i = 0; sumArr.length < length; ++i) {
-            let randomNum = Math.floor(Math.random() * 9);
-            randomNum *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
-
-            if (!sumArr.includes(randomNum)) {
-                sumArr.push(randomNum);
-            }
-        }
-    };
 
     if (n === 1) {
         return [0];
-    } else {
-        createArr(n);
     }
 
-    while (sumArr.reduce(reducer) !== 0) {
-        sumArr.length = 0;
-        createArr(n);
+    if (n % 2 !== 0) {
+        sumArr.push(0);
+        const arrFill = (n - 1) / 2;
+
+        for (let i = 1; i <= arrFill; ++i) {
+            sumArr.push(i);
+            sumArr.push(i * -1);
+        }
+        return sumArr;
+    } else {
+        const arrFill = n / 2;
+
+        for (let i = 1; i <= arrFill; ++i) {
+            sumArr.push(i);
+            sumArr.push(i * -1);
+        }
+        return sumArr;
     }
-    return sumArr;
 };
+// 64ms, faster than 43.77% and 36.4mb
+
+/*
+pseudocode
+n = how many unique numbers
+sum of all numbers must be 0
+
+*/
 
 sumZero(5);
 sumZero(3); // [-1, 0, 1];
