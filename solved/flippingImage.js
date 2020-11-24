@@ -11,10 +11,6 @@ replaced by 0. For example, inverting [0, 1, 1] results in [1, 0, 0].
 */
 
 const flipAndInvertImage = (A) => {
-    for (const array of A) {
-        array.reverse();
-    }
-
     A.map((array) => {
         for (let i = 0; i < array.length; ++i) {
             if (array[i] === 0) {
@@ -23,6 +19,7 @@ const flipAndInvertImage = (A) => {
                 array[i] = 0;
             }
         }
+        array.reverse();
     });
     return A;
 };
