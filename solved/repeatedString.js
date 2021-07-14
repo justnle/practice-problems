@@ -43,6 +43,7 @@ function repeatedString(s, n) {
 repeatedString(`aba`, 10); // expected 7
 repeatedString(`a`, 1000000000000); // expected 1000000000000
 repeatedString(
-    `epsxyyflvrrrxzvnoenvpegvuonodjoxfwdmcvwctmekpsnamchznsoxaklzjgrqruyzavshfbmuhdwwmpbkwcuomqhiyvuztwvq`,
+    `epsxyyflvrrrxzvnoenvpegvuonodjoxfwdmcvwctmekpsnam
+    chznsoxaklzjgrqruyzavshfbmuhdwwmpbkwcuomqhiyvuztwvq`,
     549382313570
 ); // expected 16481469408
