@@ -106,3 +106,4 @@ dist
 practice.code-workspace
 .prettierrc
 .eslintrc.json
+.vscode
