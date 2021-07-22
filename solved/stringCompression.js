@@ -22,16 +22,9 @@ You must write an algorithm that uses only constant extra space.
 */
 
 const compress = (chars) => {
-    let s = ``;
+    let s = chars[0];
     let compare = chars[0];
     let counter = 1;
-
-    if (chars.length === 1) {
-        s += chars[0];
-        return 1;
-    }
-
-    s += compare;
 
     for (let i = 1; i < chars.length; ++i) {
         const check = chars[i];
@@ -47,6 +40,7 @@ const compress = (chars) => {
             counter = 1;
         }
     }
+
     if (counter !== 1) {
         s += counter;
     }
@@ -56,6 +50,7 @@ const compress = (chars) => {
     for (const char of s.split(``)) {
         chars.push(char);
     }
+
     return chars.length;
 };
 
@@ -70,3 +65,6 @@ compress(['a', 'a', 'b', 'b', 'c', 'c', 'c']);
 compress(['a', 'a', 'a', 'b', 'b', 'a', 'a']);
 compress(['a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b']);
 compress(['a', 'b', 'c']);
+
+// 72ms runtime, faster than 97.27% of submissions
+// 40.8mb of memory usage, less than  52.39 of submissions
