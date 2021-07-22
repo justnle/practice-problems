@@ -61,10 +61,10 @@ const compress = (chars) => {
 // if next character is different, take character
 // repeat
 
-compress(['a', 'a', 'b', 'b', 'c', 'c', 'c']);
-compress(['a', 'a', 'a', 'b', 'b', 'a', 'a']);
-compress(['a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b']);
-compress(['a', 'b', 'c']);
+compress([`a`, `a`, `b`, `b`, `c`, `c`, `c`]);
+compress([`a`, `a`, `a`, `b`, `b`, `a`, `a`]);
+compress([`a`, `b`, `b`, `b`, `b`, `b`, `b`, `b`, `b`, `b`, `b`, `b`, `b`]);
+compress([`a`, `b`, `c`]);
 
 // 72ms runtime, faster than 97.27% of submissions
 // 40.8mb of memory usage, less than  52.39 of submissions
