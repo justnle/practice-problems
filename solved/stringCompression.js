@@ -68,3 +68,34 @@ compress([`a`, `b`, `c`]);
 
 // 72ms runtime, faster than 97.27% of submissions
 // 40.8mb of memory usage, less than  52.39 of submissions
+
+/*
+const compress = chars => {
+    let s = chars[0];
+    let counter = 1;
+    let compare = chars[0];
+
+    for (let i = 0; i < chars.length; ++i) {
+        if (compare === chars[i + 1]) {
+            ++counter;
+        } else {
+            if (counter > 1) {
+                s += counter;
+            }
+            counter = 1;
+            compare = chars[i + 1];
+
+            if (compare) {
+                s += compare;
+            }
+        }
+    }
+
+    chars.length = 0;
+
+    for (const char of s.split(``)) {
+        chars.push(char);
+    }
+    return chars.length;
+}
+*/
