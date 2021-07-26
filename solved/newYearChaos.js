@@ -36,18 +36,20 @@ check index of each number
 
 function minimumBribes(q) {
     let bribes = 0;
-    const end = q.length - 1;
+    const endQ = q.length - 1;
 
-    for (let i = end; i >= 0; --i) {
-        if (q[i] !== i + 1) {
-            if (q[i - 1] === i + 1) {
+    for (let i = endQ; i >= 0; --i) {
+        const original = i + 1;
+
+        if (q[i] !== original) {
+            if (q[i - 1] === original) {
                 const temp = q[i];
-                q[i] = i + 1;
+                q[i] = original;
                 q[i - 1] = temp;
                 ++bribes;
-            } else if (q[i - 2] === i + 1) {
+            } else if (q[i - 2] === original) {
                 const temp = q[i - 1];
-                q[i - 1] = i + 1;
+                q[i - 1] = original;
                 q[i - 2] = temp;
                 ++bribes;
                 ++i;
@@ -60,7 +62,7 @@ function minimumBribes(q) {
     console.log(bribes);
 }
 
-// minimumBribes([2, 1, 5, 3, 4]); // 3
-// minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]); // too chaotic
+minimumBribes([2, 1, 5, 3, 4]); // 3
+minimumBribes([5, 1, 2, 3, 7, 8, 6, 4]); // too chaotic
 minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]); // 7
-// minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]); // 4
+minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]); // 4
