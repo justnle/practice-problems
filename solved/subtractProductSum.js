@@ -16,3 +16,18 @@ const subtractProductAndSum = (n) => {
 
 subtractProductAndSum(234); // 15
 subtractProductAndSum(4421); // 21
+
+/*
+var subtractProductAndSum = function(n) {
+    const numStr = n.toString().split('');
+    let product = 1;
+    let sum = 0;
+
+    for (let i = 0; i < numStr.length; ++i) {
+        sum += parseInt(numStr[i]);
+        product *= parseInt(numStr[i]);
+    }
+
+    return product - sum;
+};
+*/
