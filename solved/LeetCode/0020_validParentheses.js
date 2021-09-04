@@ -34,7 +34,6 @@ const isValid = (s) => {
     let open = ``;
     let openCount = 0;
     let closeCount = 0;
-    const openers = [`(`, `[`, `{`];
     const hash = {
         '{': `}`,
         '[': `]`,
@@ -42,7 +41,7 @@ const isValid = (s) => {
     };
 
     for (const char of split) {
-        if (openers.includes(char)) {
+        if (Object.keys(hash).includes(char))) {
             open += char;
             ++openCount;
         } else {
