@@ -30,37 +30,27 @@ Output: true
 */
 
 const isValid = (s) => {
-    const split = s.split(``);
-    let open = ``;
-    let openCount = 0;
-    let closeCount = 0;
+    const stack = [];
     const hash = {
-        '{': `}`,
+        '(': `)`,
         '[': `]`,
-        '(': `)`
+        '{': `}`
     };
 
-    for (const char of split) {
-        if (Object.keys(hash).includes(char)) {
-            open += char;
-            ++openCount;
-        } else {
-            if (char !== hash[open.charAt(open.length - 1)]) {
-                return false;
-            } else {
-                open = open.slice(0, -1);
-                ++closeCount;
-            }
+    for (let i = 0; i < s.length; ++i) {
+        const char = s[i];
+
+        if (hash[char]) {
+            stack.push(hash[char]);
+        } else if (char !== stack.pop()) {
+            return false;
         }
     }
 
-    if (openCount > closeCount) {
-        return false;
-    }
-    return true;
+    return !stack.length;
 };
 
 isValid(`[[[]`); // false
 
-// 80ms, faster than 41.87% of js submissions
-// 40.6mb, less than 17.85% of js submissions
+// 72ms, faster than 81.91% of js submissions
+// 38.8mb, less than 82.70% of js submissions
