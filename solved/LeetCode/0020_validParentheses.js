@@ -41,7 +41,7 @@ const isValid = (s) => {
     };
 
     for (const char of split) {
-        if (Object.keys(hash).includes(char))) {
+        if (Object.keys(hash).includes(char)) {
             open += char;
             ++openCount;
         } else {
