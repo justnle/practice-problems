@@ -24,17 +24,27 @@ Input: nums = [0,1,2,2,3,0,4,2], val = 2
 Output: 5, nums = [0,1,4,0,3,_,_,_]
 */
 
-const removeElement = nums, val => {
-    for (let i = 0; i < nums.length; ++i) {
-        if (nums[i] === val) {
-            nums.splice(i,1);
-            --i;
+const removeElement = (nums, val) => {
+    const hash = {};
+
+    for (const num of nums) {
+        !hash[num] ? (hash[num] = 1) : ++hash[num];
+    }
+
+    delete hash[val];
+
+    for (const num in hash) {
+        if (hash[num]) {
+            while (hash[num] > 0) {
+                nums.push(num);
+                --hash[num];
+            }
         }
     }
     console.log(nums);
-}
+};
 
-removeElement([3,2,2,3]); // [2,2]
+removeElement([3, 2, 2, 3]); // [2,2]
 
-// 147ms, faster than 5.33% of js submissions
-// 40.7mb, less than 5.11% of js submissions
+// 106ms, faster than 12.21% of js submissions
+// 40.1mb, less than 7.19% of js submissions
