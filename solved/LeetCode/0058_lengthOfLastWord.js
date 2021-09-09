@@ -19,20 +19,9 @@ Input: s = `luffy is still joyboy`
 Output: 6
 */
 
-const lengthOfLastWord = (s) => {
-    const split = s.split(` `);
-
-    for (let i = 0; i < split.length; ++i) {
-        if (split[i] === ``) {
-            split.splice(i, 1);
-            --i;
-        }
-    }
-
-    return split[split.length - 1].length;
-};
+const lengthOfLastWord = (s) => s.trim().split(` `).pop().length;
 
 lengthOfLastWord(`   fly me   to   the moon  `); // 4
 
-// 123ms, faster than 5.15% of js submissions
-// 38.4mb, less than 88.01% of js submissions
+// 56ms, faster than 99.66% of js submissions
+// 38.7mb, less than 70.50% of js submissions
