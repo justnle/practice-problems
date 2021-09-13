@@ -21,34 +21,26 @@ Explanation: There are three ways to climb to the top.
     3. 1 step + 2 steps
 */
 
+const hashMap = {};
+
 const climbStairs = (n) => {
-    function memoize(fn) {
-        const cache = {};
-        return function (...args) {
-            if (cache[args]) {
-                return cache[args];
-            }
-
-            const result = fn.apply(this, args);
-            cache[args] = results;
-
-            return result;
-        };
+    if (n < 4) {
+        return n;
     }
 
-    const slowClimb = (n) => {
-        if (n < 4) {
-            return n;
-        }
+    if (hashMap[n]) {
+        return hashMap[n];
+    }
 
-        return climb(n - 1) + climb(n - 2);
-    };
+    const first = climbStairs(n - 1);
+    const second = climbStairs(n - 2);
 
-    const climb = memoize(slowClimb);
-    return climb(n);
+    hashMap[n] = first + second;
+
+    return first + second;
 };
 
 climbStairs(9); // 55
 
-// 89ms, faster than 20.03% of js submissions
+// 81ms, faster than 23.94% of js submissions
 // 38.7mb, less than 46.82% of js submissions
