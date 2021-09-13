@@ -22,11 +22,30 @@ Explanation: There are three ways to climb to the top.
 */
 
 const climbStairs = (n) => {
-    if (n <= 3) {
-        return n;
+    function memoize(fn) {
+        const cache = {};
+        return function (...args) {
+            if (cache[args]) {
+                return cache[args];
+            }
+
+            const result = fn.apply(this, args);
+            cache[args] = results;
+
+            return result;
+        };
     }
 
-    return climbStairs(n - 1) + climbStairs(n - 2);
+    const slowClimb = (n) => {
+        if (n < 4) {
+            return n;
+        }
+
+        return climb(n - 1) + climb(n - 2);
+    };
+
+    const climb = memoize(slowClimb);
+    return climb(n);
 };
 
 climbStairs(9); // 55
