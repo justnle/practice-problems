@@ -49,3 +49,6 @@ const climbStairs = (n) => {
 };
 
 climbStairs(9); // 55
+
+// 89ms, faster than 20.03% of js submissions
+// 38.7mb, less than 46.82% of js submissions
