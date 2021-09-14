@@ -23,18 +23,19 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 */
 
 const maxProfit = (prices) => {
+    let result = 0;
     let profit = 0;
 
     for (let i = 0; i < prices.length; ++i) {
-        const initial = prices[i];
-        const remainder = prices.slice(i, prices.length);
-        const max = Math.max(...remainder);
+        for (let j = i + 1; j < prices.length; ++j) {
+            profit = prices[j] - prices[i];
 
-        if (max - initial > profit) {
-            profit = max - initial;
+            if (profit > result) {
+                result = profit;
+            }
         }
     }
-    return profit;
+    return result;
 };
 
 maxProfit([7, 1, 5, 3, 6, 4]); // 5
