@@ -23,19 +23,20 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 */
 
 const maxProfit = (prices) => {
-    let result = 0;
+    let minimum = Number.MAX_VALUE;
     let profit = 0;
 
     for (let i = 0; i < prices.length; ++i) {
-        for (let j = i + 1; j < prices.length; ++j) {
-            profit = prices[j] - prices[i];
-
-            if (profit > result) {
-                result = profit;
-            }
+        if (prices[i] < minimum) {
+            minimum = prices[i];
+        } else if (prices[i] - minimum > profit) {
+            profit = prices[i] - minimum;
         }
     }
-    return result;
+    return profit;
 };
 
 maxProfit([7, 1, 5, 3, 6, 4]); // 5
+
+// 185ms, faster than 6.76% of js submissions
+// 48.6mb, less than 77.08% of js submissions
