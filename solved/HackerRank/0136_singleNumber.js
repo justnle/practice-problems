@@ -26,14 +26,12 @@ const singleNumber = (nums) => {
         !hash[num] ? (hash[num] = 1) : ++hash[num];
     }
 
-    for (const num in hash) {
-        if (hash[num] === 1) {
-            return num;
-        }
-    }
+    const result = Object.keys(hash).find((key) => hash[key] === 1);
+
+    return result;
 };
 
 singleNumber([2, 2, 1]); // 1
 
-// 128ms, faster than 25.42% of js submissions
-// 45mb, less than 14.57% of js submissions
+// 96ms, faster than 45.49% of js submissions
+// 44.6mb, less than 19.54% of js submissions
