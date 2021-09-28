@@ -47,3 +47,6 @@ const uncommonFromSentences = (s1, s2) => {
 };
 
 uncommonFromSentences(`fd kiss fd`, `fd fd kiss`); // [];
+
+// 60ms, faster than 99.58% of js submissions
+// 40.5mb, less than 9.58% of js submissions
