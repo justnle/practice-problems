@@ -22,3 +22,6 @@ const findKthLargest = (nums, k) => {
 };
 
 findKthLargest([3, 2, 1, 5, 6, 4], 2); // 5
+
+// 72ms, faster than 95.13% of js submissions
+// 40.1mb, less than 69.47% of js submissions
