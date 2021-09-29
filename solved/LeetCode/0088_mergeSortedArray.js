@@ -10,3 +10,6 @@ const merge = (nums1, m, nums2, n) => {
 };
 
 merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3); // [1,2,2,3,5,6];
+
+// 72ms, faster than 79.75% of js submissions
+// 38.9mb, less than 58.04% of js submissions
