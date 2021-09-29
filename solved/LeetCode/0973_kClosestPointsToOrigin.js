@@ -31,7 +31,7 @@ const kClosest = (points, k) => {
 
     for (const point of points) {
         distances.push([
-            Math.sqrt(Math.pow(point[0] - 0, 2) + Math.pow(point[1] - 0, 2)),
+            Math.sqrt(Math.pow(point[0] - 0, 2) - Math.pow(point[1] - 0, 2)),
             point
         ]);
     }
