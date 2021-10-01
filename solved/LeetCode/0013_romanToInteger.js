@@ -41,11 +41,9 @@ Input: s = `MCMXCIV`
 Output: 1994
 */
 
-/* eslint-disable operator-linebreak */
 const romanToInt = (s) => {
-    const roman = s.split(``).reverse();
     let res = 0;
-    const map = {
+    const numerals = {
         I: 1,
         V: 5,
         X: 10,
@@ -55,33 +53,15 @@ const romanToInt = (s) => {
         M: 1000
     };
 
-    for (let i = 0; i < roman.length; ++i) {
-        if (
-            (roman[i] === `V` && roman[i + 1] === `I`) ||
-            (roman[i] === `X` && roman[i + 1] === `I`)
-        ) {
-            res += map[roman[i]] - map[roman[i + 1]];
-            ++i;
-        } else if (
-            (roman[i] === `L` && roman[i + 1] === `X`) ||
-            (roman[i] === `C` && roman[i + 1] === `X`)
-        ) {
-            res += map[roman[i]] - map[roman[i + 1]];
-            ++i;
-        } else if (
-            (roman[i] === `D` && roman[i + 1] === `C`) ||
-            (roman[i] === `M` && roman[i + 1] === `C`)
-        ) {
-            res += map[roman[i]] - map[roman[i + 1]];
-            ++i;
-        } else {
-            res += map[roman[i]];
-        }
+    for (let i = 0; i < s.length; ++i) {
+        numerals[s[i]] < numerals[s[i + 1]]
+            ? (res -= numerals[s[i]])
+            : (res += numerals[s[i]]);
     }
     return res;
 };
 
 romanToInt(`MCMXCIV`); // 1994
 
-// 241ms, faster than 21.67% of js submissions
-// 46.4mb, less than 14.65% of js submissions
+// 224ms, faster than 27.21% of js submissions
+// 45.2mb, less than 44.36% of js submissions
