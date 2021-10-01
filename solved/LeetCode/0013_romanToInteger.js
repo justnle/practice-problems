@@ -63,14 +63,14 @@ const romanToInt = (s) => {
             res += map[roman[i]] - map[roman[i + 1]];
             ++i;
         } else if (
-            (roman[i] === `V` && roman[i + 1] === `I`) ||
-            (roman[i] === `X` && roman[i + 1] === `I`)
+            (roman[i] === `L` && roman[i + 1] === `X`) ||
+            (roman[i] === `C` && roman[i + 1] === `X`)
         ) {
             res += map[roman[i]] - map[roman[i + 1]];
             ++i;
         } else if (
-            (roman[i] === `V` && roman[i + 1] === `I`) ||
-            (roman[i] === `X` && roman[i + 1] === `I`)
+            (roman[i] === `D` && roman[i + 1] === `C`) ||
+            (roman[i] === `M` && roman[i + 1] === `C`)
         ) {
             res += map[roman[i]] - map[roman[i + 1]];
             ++i;
@@ -85,3 +85,5 @@ romanToInt(`MCMXCIV`); // 1994
 
 // 241ms, faster than 21.67% of js submissions
 // 46.4mb, less than 14.65% of js submissions
+
+// if roman[i] is V,X
