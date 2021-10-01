@@ -85,5 +85,3 @@ romanToInt(`MCMXCIV`); // 1994
 
 // 241ms, faster than 21.67% of js submissions
 // 46.4mb, less than 14.65% of js submissions
-
-// if roman[i] is V,X
