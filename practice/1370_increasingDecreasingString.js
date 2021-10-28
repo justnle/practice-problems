@@ -1,5 +1,5 @@
 /*
-LeetCode #1370
+LeetCode #1370 - Increasing Decreasing String - Easy
 
 Given a string s. You should re-order the string using the following algorithm:
 
