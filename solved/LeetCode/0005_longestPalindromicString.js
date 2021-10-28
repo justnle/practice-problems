@@ -22,30 +22,35 @@ Output: `a`
 */
 
 const longestPalindrome = (s) => {
-    const palindromeArr = [];
     let res = ``;
 
-    const check = (s) => {
-        const rev = s.split(``).reverse().join(``);
+    if (s.length < 1 || s === null) {
+        return ``;
+    }
 
-        if (s === rev && s.length > 0) {
-            palindromeArr.push(s);
+    const expandFromCenter = (str, left, right) => {
+        let i = 0;
+
+        while (str[left - i] && str[left - i] === str[right + i]) {
+            ++i;
         }
+        --i;
+
+        return str.slice(left - i, right + i + 1);
     };
 
     for (let i = 0; i < s.length; ++i) {
-        for (let j = 1; j <= s.length; ++j) {
-            let str = s.slice(i, j);
-            check(str);
+        const odd = expandFromCenter(s, i, i);
+        const even = expandFromCenter(s, i, i);
+
+        if (odd.length > res.length) {
+            res = odd;
+        }
+
+        if (even.length > res.length) {
+            res = even;
         }
     }
-
-    for (const palindrome of palindromeArr) {
-        if (palindrome.length > res.length) {
-            res = palindrome;
-        }
-    }
-
     return res;
 };
 
