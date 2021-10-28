@@ -55,3 +55,6 @@ const longestPalindrome = (s) => {
 };
 
 longestPalindrome(`babad`); // `bab` or `aba`
+
+// 144ms, faster than 67.38% of js submissions
+// 41.5mb, less than 72.87% of js submissions
