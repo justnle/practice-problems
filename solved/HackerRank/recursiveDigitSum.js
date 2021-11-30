@@ -2,6 +2,19 @@
 HackerRank Recursive Digit Sum
 */
 
+const superDigit = (n, k) => {
+    const p = (
+        n
+            .split(``)
+            .map(Number)
+            .reduce((a, b) => a + b, 0) * k
+    ).toString();
+
+    return p.length > 1 ? superDigit(p, 1) : p;
+};
+
+superDigit(148, 3); // 3
+
 /*
 pseudocode
 
@@ -23,27 +36,6 @@ parseInt each split char
 call superdigit on the new num
 
 
-(before concat and split, you can just sum all the digits of n and multiply by k)
+(before concat and split, you can just sum all
+    the digits of n and multiply by k)
 */
-
-const superDigit = (n, k) => {
-    const numStr = n.toString();
-    let p = ``;
-    let num = 0;
-
-    if (numStr.length === 1) {
-        return n;
-    }
-
-    for (let i = 0; i < k; ++i) {
-        p += numStr;
-    }
-
-    const pSplit = p.split(``);
-
-    for (const char of pSplit) {
-        num += parseInt(char);
-    }
-
-    superDigit(num, 1);
-};
