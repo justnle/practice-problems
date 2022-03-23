@@ -20,13 +20,17 @@ Output: true
 
 const containsDuplicate = (nums) => {
     const map = {};
-    let check = true;
 
     for (const num of nums) {
-        !map[num] ? (map[num] = 1) : (check = false);
+        !map[num] ? (map[num] = 1) : ++map[num];
     }
-    // console.log(check);
-    return check;
+
+    for (const num in map) {
+        if (num > 1) {
+            return true;
+        }
+    }
+    return false;
 };
 
 containsDuplicate([1, 2, 3, 4, 5]);
