@@ -19,22 +19,20 @@ Output: true
 */
 
 const containsDuplicate = (nums) => {
-    const map = {};
+    const seen = new Map();
 
-    for (const num of nums) {
-        !map[num] ? (map[num] = 1) : ++map[num];
-    }
-
-    for (const num in map) {
-        if (num > 1) {
+    for (let i = 0; i < nums.length; ++i) {
+        if (seen.has(nums[i])) {
             return true;
         }
+        seen.set(nums[i]);
     }
+
     return false;
 };
 
 containsDuplicate([1, 2, 3, 4, 5]);
 containsDuplicate([1, 1, 1, 4, 5]);
 
-// 160ms, faster than 35.50% of js submissions
-// 52.1mb, less than 8.69% of js submissions
+// 76ms, faster than 98.15% of js submissions
+// 51.2mb, less than 34.10% of js submissions
