@@ -18,3 +18,6 @@ const addBinary = (a, b) => {
 
 addBinary(`11`, `1`); // `100`
 addBinary(`1010`, `1011`); // `10101`
+
+// 119ms, faster than 22.12% of js submissions
+// 41.9mb, less than 91.05% of js submissions
