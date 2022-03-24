@@ -19,57 +19,18 @@ Output: false
 */
 
 const containsNearbyDuplicate = (nums, k) => {
-    const dupes = {};
-    let res = Number.MAX_VALUE;
+    const map = new Map();
 
-    for (const num of nums) {
-        !dupes[num] ? (dupes[num] = 1) : ++dupes[num];
-    }
-
-    for (const num in dupes) {
-        if (dupes[num] <= 1) {
-            delete dupes[num];
-        } else {
-            dupes[num] = [];
+    for (let i = 0; i < nums.length; ++i) {
+        if (i - map.get(nums[i]) <= k) {
+            return true;
         }
+        map.set(nums[i], i);
     }
-
-    for (const num in dupes) {
-        for (let i = 0; i < nums.length; ++i) {
-            if (nums[i] === parseInt(num)) {
-                dupes[num].push(i);
-            }
-        }
-    }
-
-    const minDiff = (arr, n) => {
-        let diff = Number.MAX_VALUE;
-        arr.sort((a, b) => a - b);
-
-        for (let i = 0; i < n - 1; ++i) {
-            if (arr[i + 1] - arr[i] < diff) {
-                diff = arr[i + 1] - arr[i];
-            }
-        }
-        return diff;
-    };
-
-    for (const vals in dupes) {
-        const check = minDiff(dupes[vals], dupes[vals].length);
-
-        if (check <= k) {
-            res = check;
-        }
-    }
-
-    if (res <= k) {
-        return true;
-    } else {
-        return false;
-    }
+    return false;
 };
 
 containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2); // false
 
-// 2395ms, faster than 12.23% of js submissions
-// 71.8mb, less than 10.07% of js submissions
+// 131ms, faster than 77.38% of js submissions
+// 67mb, less than 22.94% of js submissions
