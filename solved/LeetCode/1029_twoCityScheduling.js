@@ -24,59 +24,67 @@ Input: costs = [[259,770],[448,54],[926,667],[184,139],[840,118],[577,469]]
 Output: 1859
 
 Example 3:
-Input: costs = [[515,563],[451,713],[537,709],[343,819],[855,779],[457,60],[650,359],[631,42]]
+Input: costs = [[515,563],[451,713],[537,709],[343,819],[855,779],[457,60],
+               [650,359],[631,42]]
 Output: 3086
 */
 
 const twoCitySchedCost = (costs) => {
     const diffMap = new Map();
-    const candidates = costs.length / 2;
+    const maxCandidates = costs.length / 2;
+
     let index = 0;
-    let candidate1 = 0;
-    let candidate2 = 0;
-    let res = 0;
+    let candidateA = 0;
+    let candidateB = 0;
+    let cost = 0;
 
     const diff = (arr) => Math.abs(arr[0] - arr[1]);
 
+    // create a Map of costs[cityA] - costs[cityB]
+    // with the corresponding index in costs
     for (const pair of costs) {
         diffMap.set(index, diff(pair));
         ++index;
     }
 
-    const diffArr = [...diffMap].sort(([k1, v1], [k2, v2]) => v2 - v1);
+    // turn Map into array and then sort (descending)
+    const diffArr = [...diffMap].sort((a, b) => b[1] - a[1]);
 
+    // loop through sorted array, check costs
+    // then add accordingly until maxCandidates at
+    // a city is reached. Then add the opposite
+    // city until all candidates are scheduled
     for (let i = 0; i < diffArr.length; ++i) {
-        let costIndex = diffArr[i][0];
-        const c1 = costs[costIndex][0];
-        const c2 = costs[costIndex][1];
+        const costIndex = diffArr[i][0];
+        const cityA = costs[costIndex][0];
+        const cityB = costs[costIndex][1];
 
-        if (c1 < c2) {
-            if (candidate1 < candidates) {
-                res += c1;
-                ++candidate1;
+        if (cityA < cityB) {
+            if (candidateA < maxCandidates) {
+                cost += cityA;
+                ++candidateA;
             } else {
-                res += c2;
-                ++candidate2;
+                cost += cityB;
+                ++candidateB;
             }
         }
 
-        if (c2 < c1) {
-            if (candidate2 < candidates) {
-                res += c2;
-                ++candidate2;
+        if (cityB < cityA) {
+            if (candidateB < maxCandidates) {
+                cost += cityB;
+                ++candidateB;
             } else {
-                res += c1;
-                ++candidate2;
+                cost += cityA;
+                ++candidateB;
             }
         }
 
-        if (c1 == c2) {
-            res += c1;
-            ++candidate1;
+        if (cityA == cityB) {
+            cost += cityA;
+            ++candidateA;
         }
     }
-
-    return res;
+    return cost;
 };
 
 twoCitySchedCost([
