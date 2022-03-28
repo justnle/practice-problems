@@ -32,3 +32,7 @@ search([2, 5, 6, 0, 0, 1, 2], 0); // true
 
 // 101ms, faster than 27.81% of js submissions
 // 42.1mb, less than 86.74% of js submissions
+
+/*
+Can also use a map with map.has(target)...
+*/
