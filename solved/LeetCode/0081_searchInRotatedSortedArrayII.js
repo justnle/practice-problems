@@ -31,7 +31,7 @@ const search = (nums, target) => {
 
     while (left < right) {
         // starting at the middle
-        let mid = left + parseInt((right - left) / 2);
+        const mid = left + parseInt((right - left) / 2);
 
         // checks for duplicate numbers
         if (nums[mid] == nums[right]) {
