@@ -24,8 +24,33 @@ Input: nums = [2,5,6,0,0,1,2], target = 3
 Output: false
 */
 
+// binary search
 const search = (nums, target) => {
-    return nums.includes(target);
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+        // starting at the middle
+        let mid = left + parseInt((right - left) / 2);
+
+        // checks for duplicate numbers
+        if (nums[mid] == nums[right]) {
+            --right;
+        } else if (nums[mid] < nums[right]) {
+            if (target > nums[mid] && target <= nums[right]) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        } else {
+            if (target > nums[mid] || target < nums[left]) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+    }
+    return nums[left] == target;
 };
 
 search([2, 5, 6, 0, 0, 1, 2], 0); // true
