@@ -1,5 +1,6 @@
 /*
-LeetCode #1309
+LeetCode #1309 - Decrypt String from Alphabet to Integer Mapping - Medium
+
 Given a string s formed by digits ('0' - '9') and '#' . We want to map s to
 English lowercase characters as follows:
 
