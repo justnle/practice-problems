@@ -14,31 +14,35 @@ if the i^th city and the j^th city are directly connected, and
 isConnected[i][j] = 0 otherwise.
 
 Return the total number of provinces.
-*/
 
-/*
-PSEUDOCODE
+Example 1:
+Input: isConnected = [[1,1,0],[1,1,0],[0,0,1]]
+Output: 2
 
-1. find the length of isConnected to determine max amount of provinces
-2. map over the first array
-    if index 1 or index 2 === 1, then city a is connected to b and/or c
-3. map over the second array
-    if index 0 or index 2 === 1, then city b is connected to a and/or c
+Input: isConnected = [[1,0,0],[0,1,0],[0,0,1]]
+Output: 3
 */
 
 const findCircleNum = (isConnected) => {
-    let maxProv = isConnected.length;
+    const visited = new Set();
+    let provinces = 0;
+
+    const dfs = (v) => {
+        for (let j = 0; j < isConnected.length; ++j) {
+            if (isConnected[v][j] === 1 && !visited.has(j)) {
+                visited.add(j);
+                dfs(j);
+            }
+        }
+    };
 
     for (let i = 0; i < isConnected.length; ++i) {
-        if (
-            JSON.stringify(isConnected[i]) ===
-            JSON.stringify(isConnected[i + 1])
-        ) {
-            --maxProv;
+        if (!visited.has(i)) {
+            dfs(i);
+            ++provinces;
         }
     }
-
-    console.log(maxProv);
+    return provinces;
 };
 
 findCircleNum([
@@ -51,3 +55,6 @@ findCircleNum([
     [0, 1, 0],
     [0, 0, 1]
 ]); // Output 3
+
+// 94ms, faster than 59.94% of js submissions
+// 44.9mb, less than 60.99% of js submissions
