@@ -12,7 +12,7 @@ PSEUDOCODE
 - map over array
 - look for target
     - if target is found, return index of target
-    - if target is not found, find index where array 
+    - if target is not found, find index where array
       element is less than or equal to target
        return index +1 of that index
 -  edge cases
