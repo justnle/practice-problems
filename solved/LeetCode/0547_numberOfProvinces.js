@@ -24,11 +24,16 @@ Output: 3
 */
 
 const findCircleNum = (isConnected) => {
+    // a set to store the visited cities
     const visited = new Set();
+    // number of provinces
     let provinces = 0;
 
+    // helper function to do DFS traversal through isConnected
     const dfs = (v) => {
+        // traversing through a city's neighbors
         for (let j = 0; j < isConnected.length; ++j) {
+            // if this city is connected and not visited
             if (isConnected[v][j] === 1 && !visited.has(j)) {
                 visited.add(j);
                 dfs(j);
@@ -37,8 +42,11 @@ const findCircleNum = (isConnected) => {
     };
 
     for (let i = 0; i < isConnected.length; ++i) {
+        // check if city has been visited
         if (!visited.has(i)) {
+            // dfs for this city
             dfs(i);
+            // add a province
             ++provinces;
         }
     }
