@@ -30,26 +30,22 @@ Output: ""
 */
 
 const removeOuterParentheses = (s) => {
-    let parens = 0;
-    let result = ``;
+    let substr = ``;
+    let open = 0;
+    let start = 0;
 
-    for (const paren of s) {
-        if (paren === `(`) {
-            if (parens > 0) {
-                result += paren;
-            }
-            parens++;
-        } else {
-            parens--;
-            if (parens > 0) {
-                result += paren;
-            }
+    for (let i = 0; i < s.length; ++i) {
+        s[i] === `(` ? ++open : --open;
+
+        if (open === 0) {
+            substr += s.slice(start + 1, i);
+            start = i + 1;
         }
     }
-    return result;
+    return substr;
 };
 
 removeOuterParentheses(`(()())(())(()(()))`); // "()()()()(())"
 
-// 136ms, faster than 11% of js submissions
-// 43.7mb, less than 81.10% of js submissions
+// 83ms, faster than 68.15% of js submissions
+// 42.4mb, less than 96.92% of js submissions
