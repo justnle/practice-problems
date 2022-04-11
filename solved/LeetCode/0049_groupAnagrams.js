@@ -22,40 +22,18 @@ Output: [[`a`]]
 */
 
 const groupAnagrams = (strs) => {
-    const indexMap = {};
-    const sorted = [];
-    const res = [];
-
-    const strSort = (s) => s.split(``).sort().join(``);
+    const map = {};
 
     for (const str of strs) {
-        sorted.push(strSort(str));
-    }
+        const sortedStr = str.split(``).sort().join(``);
 
-    for (let i = 0; i < sorted.length; ++i) {
-        !indexMap[sorted[i]]
-            ? (indexMap[sorted[i]] = [i])
-            : indexMap[sorted[i]].push(i);
+        map[sortedStr] ? map[sortedStr].push(str) : (map[sortedStr] = [str]);
     }
-
-    for (const idx in indexMap) {
-        if (indexMap) {
-            res.push([...indexMap[idx]]);
-        }
-    }
-
-    for (const groups in res) {
-        if (res) {
-            for (const idx of res[groups]) {
-                res[groups].splice(res[groups].indexOf(idx), 1, strs[idx]);
-            }
-        }
-    }
-    return res;
+    return Object.values(map);
 };
 
 groupAnagrams([`eat`, `tea`, `tan`, `ate`, `nat`, `bat`]);
 // [[`bat`], [`nat`, `tan`], [`ate`, `eat`, `tea`]]
 
-// 192ms, faster than 49.29% of js submissions
-// 56mb, less than 11.47% of js submissions
+// 185ms, faster than 54.34% of js submissions
+// 53.8mb, less than 46.06% of js submissions
