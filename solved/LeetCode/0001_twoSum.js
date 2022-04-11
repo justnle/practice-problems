@@ -43,3 +43,27 @@ twoSum([3, 3], 6); // [0, 1]
 
 // 99ms, faster than 62.68% of js submissions
 // 43.6mb, less than 20.87% of js submissions
+
+/*
+Orignal LeetCode #1 - Two Sum - Easy
+
+const twoSum = (nums, target) => {
+    const targetIndices = new Map();
+
+    for (let i = 0; i < nums.length; ++i) {
+        targetIndices.set(nums[i], i);
+
+    }
+
+    for (let i = 0; i < nums.length; ++i) {
+        const num = nums[i];
+        const remainder = target - num;
+        const remainderIndex = targetIndices.get(remainder);
+
+        if (remainderIndex && remainderIndex !== i) {
+            return [i, remainderIndex];
+        }
+    }
+    return [];
+};
+*/
