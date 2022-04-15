@@ -20,27 +20,25 @@ Output: [0,0,9,0,0]
 */
 
 const productExceptSelf = (nums) => {
-    const answer = [];
+    const leftProd = [1];
+    const rightProd = [1];
+    const res = [];
+    const rev = nums.slice(0, nums.length).reverse();
 
     for (let i = 0; i < nums.length; ++i) {
-        const rest = nums.slice(1);
-
-        if (i === 0) {
-            answer.push(rest.reduce((a, b) => a * b));
-        } else {
-            const first = nums.slice(0, i);
-            const combine = [];
-            const second = nums.slice(i + 1);
-
-            combine.push(...first);
-            combine.push(...second);
-            answer.push(combine.reduce((a, b) => a * b));
-        }
+        leftProd.push(leftProd[i] * nums[i]);
+        rightProd.push(rightProd[i] * rev[i]);
     }
-    return answer;
+    rightProd.reverse();
+
+    for (let j = 1; j <= nums.length; ++j) {
+        res.push(leftProd[j - 1] * rightProd[j]);
+    }
+    return res;
 };
 
 productExceptSelf([1, 2, 3, 4]); // [24,12,8,6]
 productExceptSelf([-1, 1, 0, -3, 3]); // [0,0,9,0,0]
 
-// TLE, solved but not O(n)
+// 110ms, faster than 82.49% of js submissions
+// 59.7mb, less than 5.11% of js submissions
