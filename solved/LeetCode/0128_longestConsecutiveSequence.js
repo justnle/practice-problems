@@ -16,29 +16,24 @@ Output: 9
 */
 
 const longestConsecutive = (nums) => {
-    let length = 0;
+    const seq = new Set(nums);
+    let longest = 0;
 
     for (const num of nums) {
-        if (!nums.includes(num - 1)) {
-            const set = new Set();
-            let next = num + 1;
+        if (!seq.has(num - 1)) {
+            let length = 0;
 
-            set.add(num);
-
-            while (nums.includes(next)) {
-                set.add(next);
-                next++;
+            while (seq.has(num + length)) {
+                ++length;
             }
-
-            if (set.size > length) {
-                length = set.size;
-            }
+            longest = Math.max(length, longest);
         }
     }
-    return length;
+    return longest;
 };
 
 longestConsecutive([100, 4, 200, 1, 3, 2]); // 4
 longestConsecutive([0, 3, 7, 2, 5, 8, 4, 6, 0, 1]); // 9
 
-// TLE
+// 535ms, faster than 34.13% of js submissions
+// 50.5mb, less than 61.53% of js submissions
