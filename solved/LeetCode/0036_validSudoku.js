@@ -57,26 +57,18 @@ const isValidSudoku = (board) => {
                     (i % 3) * 3 + (j % 3)
                 ];
 
-            if (rowElem !== `.`) {
-                if (row.has(rowElem)) {
-                    return false;
-                } else {
+            if (row.has(rowElem) || col.has(colElem) || grid.has(gridElem)) {
+                return false;
+            } else {
+                if (rowElem !== `.`) {
                     row.add(rowElem);
                 }
-            }
 
-            if (colElem !== `.`) {
-                if (col.has(colElem)) {
-                    return false;
-                } else {
+                if (colElem !== `.`) {
                     col.add(colElem);
                 }
-            }
 
-            if (gridElem !== `.`) {
-                if (grid.has(gridElem)) {
-                    return false;
-                } else {
+                if (gridElem !== `.`) {
                     grid.add(gridElem);
                 }
             }
@@ -109,5 +101,5 @@ isValidSudoku([
     [`.`, `.`, `.`, `.`, `8`, `.`, `.`, `7`, `9`]
 ]); // false
 
-// 87ms, faster than 77.65% of js submissions
-// 44.5mb, less than 91.68% of js submissions
+// 80ms, faster than 87.53% of js submissions
+// 44.3mb, less than 94.60% of js submissions
