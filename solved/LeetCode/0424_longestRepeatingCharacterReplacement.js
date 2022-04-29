@@ -24,28 +24,29 @@ const characterReplacement = (s, k) => {
     // Create a hashmap of the characters and their counts
     const count = {};
     // pointer for the end of the window
-    let p = 0;
+    let left = 0;
     // longest length
     let res = 0;
     // most frequently occuring character
     let maxFreq = 0;
 
     // iterate through the string
-    for (let i = 0; i < s.length; ++i) {
+    for (let right = 0; right < s.length; ++right) {
         // increment the count of the current character
-        !count[s[i]] ? (count[s[i]] = 1) : ++count[s[i]];
+        !count[s[right]] ? (count[s[right]] = 1) : ++count[s[right]];
         // update the max frequency, compares count
         // of the current character to the maxFreq
-        maxFreq = Math.max(maxFreq, count[s[i]]);
+        maxFreq = Math.max(maxFreq, count[s[right]]);
 
         // while the window is not full and the current
         // character is not the most frequent, move the
         // window forward
-        while (i - p + 1 - maxFreq > k) {
-            --count[s[p]];
-            ++p;
+        while (right - left + 1 - maxFreq > k) {
+            --count[s[left]];
+            ++left;
         }
-        res = Math.max(res, i - p + 1);
+        // right - left + 1 is the size of the window
+        res = Math.max(res, right - left + 1);
     }
     return res;
 };
