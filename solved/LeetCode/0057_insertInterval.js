@@ -25,14 +25,22 @@ Output: [[1,2],[3,10],[12,16]]
 const insert = (intervals, newInterval) => {
     const res = [];
 
+    // iterate over the intervals array
     for (let i = 0; i < intervals.length; ++i) {
         if (newInterval[1] < intervals[i][0]) {
+            // if the new interval ends before the current interval
+            // push the new interval to the result array
+            // push the remaining intervals to the result array
             res.push(newInterval);
             res.push(...intervals.slice(i));
             return res;
         } else if (newInterval[0] > intervals[i][1]) {
+            // else if the new interval starts after the current interval
+            // push the current interval to the result array
             res.push(intervals[i]);
         } else {
+            // merge the intervals by taking the
+            // minimum of the start and the maximum of the end
             newInterval = [
                 Math.min(newInterval[0], intervals[i][0]),
                 Math.max(newInterval[1], intervals[i][1])
