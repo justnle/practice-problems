@@ -39,7 +39,7 @@ const insert = (intervals, newInterval) => {
             // push the current interval to the result array
             res.push(intervals[i]);
         } else {
-            // merge the intervals by taking the
+            // update and merge the intervals by taking the
             // minimum of the start and the maximum of the end
             newInterval = [
                 Math.min(newInterval[0], intervals[i][0]),
