@@ -22,14 +22,18 @@ Output: true
 */
 
 const find132pattern = (nums) => {
-    for (let i = 0; i < nums.length - 2; ++i) {
-        for (let j = i + 1; j < nums.length; ++j) {
-            for (let k = j + 1; k < nums.length; ++k) {
-                if (nums[i] < nums[k] && nums[k] < nums[j]) {
-                    return true;
-                }
-            }
+    const stack = [];
+    let min = -Infinity;
+
+    for (let i = nums.length - 1; i >= 0; --i) {
+        if (nums[i] < min) {
+            return true;
         }
+
+        while (stack.length > 0 && nums[i] > stack[stack.length - 1]) {
+            min = stack.pop();
+        }
+        stack.push(nums[i]);
     }
     return false;
 };
