@@ -13,6 +13,7 @@ The list of all anagrammatic pairs is [m, m], [mo, om] at positions
 [[0],[2]], [[0,1],[1,2]] respectively.
 */
 
+// eslint-disable-next-line no-unused-vars
 const sherlockAndAnagrams = (s) => {
     const map = new Map();
 
@@ -31,6 +32,7 @@ const sherlockAndAnagrams = (s) => {
 
     let result = 0;
 
+    // eslint-disable-next-line no-unused-vars
     for (const [key, value] of map) {
         if (value > 1) {
             result += countPairs(value);
