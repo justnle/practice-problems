@@ -40,4 +40,4 @@ Input: grid = [[2],[2],[2],[2],[2],[2],[6]]
 Output: true
 */
 
-const hasValidPath = (grid) => {};
+// const hasValidPath = (grid) => {};
