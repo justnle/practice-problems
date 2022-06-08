@@ -1,3 +1,5 @@
+/* eslint-disable operator-linebreak */
+
 /*
 King Domino is a board game where you try to lay down dominos representing
 various terrains types to score the most points. Specifically in King Domino,
