@@ -102,13 +102,11 @@ const kingDomino = (board, crowns) => {
                         terrains[type].idx[i - 1] &&
                         terrains[type].idx[i - 1].includes(j)
                     ) {
-                        if (terrains[type].idx[i - 1].includes(j)) {
-                            ++terrains[type].size;
-                            terrains[type].idx[i] = [j];
+                        ++terrains[type].size;
+                        terrains[type].idx[i] = [j];
 
-                            if (crowns[i][j] === `1`) {
-                                terrains[type].crowns++;
-                            }
+                        if (crowns[i][j] === `1`) {
+                            terrains[type].crowns++;
                         }
                     } else {
                         ++groupCount;
