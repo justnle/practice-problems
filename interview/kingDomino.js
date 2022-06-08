@@ -65,11 +65,11 @@ const board = [
 ];
 
 const crowns = [
-    [`0`, `0`, `0`, `0`, `0`],
-    [`1`, `0`, `1`, `1`, `0`],
-    [`1`, `0`, `0`, `0`, `1`],
-    [`0`, `0`, `0`, `1`, `0`],
-    [`0`, `0`, `1`, `1`, `0`]
+    [0, 0, 0, 0, 0],
+    [1, 0, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [0, 0, 0, 1, 0],
+    [0, 0, 1, 1, 0]
 ];
 
 const kingDomino = (board, crowns) => {
@@ -87,15 +87,15 @@ const kingDomino = (board, crowns) => {
                     idx: {
                         [i]: [j]
                     },
-                    crowns: crowns[i][j] === `1` ? 1 : 0
+                    crowns: crowns[i][j]
                 };
             } else {
                 if (terrains[type].idx[i]) {
                     ++terrains[type].size;
                     terrains[type].idx[i].push(j);
 
-                    if (crowns[i][j] === `1`) {
-                        terrains[type].crowns++;
+                    if (crowns[i][j] !== 0) {
+                        terrains[type].crowns += crowns[i][j];
                     }
                 } else {
                     if (
@@ -105,8 +105,8 @@ const kingDomino = (board, crowns) => {
                         ++terrains[type].size;
                         terrains[type].idx[i] = [j];
 
-                        if (crowns[i][j] === `1`) {
-                            terrains[type].crowns++;
+                        if (crowns[i][j] !== 0) {
+                            terrains[type].crowns += crowns[i][j];
                         }
                     } else {
                         ++groupCount;
@@ -116,7 +116,7 @@ const kingDomino = (board, crowns) => {
                             idx: {
                                 [i]: [j]
                             },
-                            crowns: crowns[i][j] === `1` ? 1 : 0
+                            crowns: crowns[i][j]
                         };
                     }
                 }
@@ -130,6 +130,8 @@ const kingDomino = (board, crowns) => {
         }
     }
 
+    console.log(terrains);
+    console.log(points);
     return points;
 };
 
