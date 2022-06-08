@@ -21,6 +21,7 @@ function ListNode(val, next) {
 }
 */
 
+// eslint-disable-next-line no-unused-vars
 const deleteDuplicates = (head) => {
     let current = head;
 
