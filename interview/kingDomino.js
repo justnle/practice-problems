@@ -1,6 +1,6 @@
 /*
 King Domino is a board game where you try to lay down dominos representing
-various terrain types to score the most points. Specifically in King Domino,
+various terrains types to score the most points. Specifically in King Domino,
 you get points for having contiguous areas with crowns on them.
 
 Your job is to take a completed board and figure out how many points it scores.
@@ -12,8 +12,8 @@ has 3 crowns and 7 squares, so it`s worth 21 points. The 3 lakes are in
 separate regions, so they are worth 1, 4, and 0 points. Doing the same across
 all of the different areas would add up to 59 points for this board.
 
-The input will come as 2 5x5 arrays, one for the terrains and one for the
-crowns. For the image above, the terrains will appear as:
+The input will come as 2 5x5 arrays, one for the board and one for the
+crowns. For the image above, the board will appear as:
 
 1. SSSLL
 2. SWWWL
@@ -21,7 +21,7 @@ crowns. For the image above, the terrains will appear as:
 4. FWWFF
 5. FFFFL
 
-Where the possible terrains are:
+Where the possible board are:
     - S = Swamp
     - L = Lake
     - W = Wheat
@@ -45,13 +45,13 @@ the board will score.
 */
 
 /*
-s1 = 4
-l1 = 4
-l2 = 1
-l3 = 1
-w1 = 7
-f1 = 7
-k1 = 1
+s1 = 4, 1 crown = 4 points
+l1 = 4, 1 crown = 4 points
+l2 = 1, 1 crown = 1 points
+l3 = 1, 0 crown = 0 points
+w1 = 7, 2 crown = 14 points
+f1 = 7, 3 crown = 21 points
+k1 = 1, 0 crown = 0 points
 */
 
 const board = [
@@ -70,52 +70,67 @@ const crowns = [
     [`0`, `0`, `1`, `1`, `0`]
 ];
 
-const kingDomino = (terrains, crowns) => {
-    let count = 0;
-    const groups = {};
+const kingDomino = (board, crowns) => {
+    let groupCount = 0;
+    let points = 0;
+    const terrains = {};
 
-    for (let i = 0; i < terrains.length; ++i) {
-        for (let j = 0; j < terrains[i].length; ++j) {
-            const type = terrains[i][j];
+    for (let i = 0; i < board.length; ++i) {
+        for (let j = 0; j < board[i].length; ++j) {
+            const type = board[i][j];
 
-            if (!groups[type]) {
-                groups[type] = {
-                    [count]: {
-                        size: 1,
-                        idx: {
-                            [i]: [j]
-                        }
-                    }
+            if (!terrains[type]) {
+                terrains[type] = {
+                    size: 1,
+                    idx: {
+                        [i]: [j]
+                    },
+                    crowns: crowns[i][j] === `1` ? 1 : 0
                 };
             } else {
-                if (groups[type][count].idx[i]) {
-                    ++groups[type].size;
-                    groups[type][count].idx[i].push(j);
+                if (terrains[type].idx[i]) {
+                    ++terrains[type].size;
+                    terrains[type].idx[i].push(j);
+
+                    if (crowns[i][j] === `1`) {
+                        terrains[type].crowns++;
+                    }
                 } else {
                     if (
-                        groups[type][count].idx[i - 1] &&
-                        groups[type][count].idx[i - 1].includes(j)
+                        terrains[type].idx[i - 1] &&
+                        terrains[type].idx[i - 1].includes(j)
                     ) {
-                        if (groups[type][count].idx[i - 1].includes(j)) {
-                            ++groups[type][count].size;
-                            groups[type][count].idx[i] = [j];
+                        if (terrains[type].idx[i - 1].includes(j)) {
+                            ++terrains[type].size;
+                            terrains[type].idx[i] = [j];
+
+                            if (crowns[i][j] === `1`) {
+                                terrains[type].crowns++;
+                            }
                         }
                     } else {
-                        ++count;
-                        groups[type] = {
-                            [count]: {
-                                size: 1,
-                                idx: {
-                                    [i]: [j]
-                                }
-                            }
+                        ++groupCount;
+
+                        terrains[`${type}-${groupCount}`] = {
+                            size: 1,
+                            idx: {
+                                [i]: [j]
+                            },
+                            crowns: crowns[i][j] === `1` ? 1 : 0
                         };
                     }
                 }
             }
         }
     }
-    console.log(groups);
+
+    for (const type in terrains) {
+        if (type) {
+            points += terrains[type].size * terrains[type].crowns;
+        }
+    }
+
+    return points;
 };
 
 kingDomino(board, crowns);
