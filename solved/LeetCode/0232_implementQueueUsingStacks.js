@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
 /*
 LeetCode #232 - Implement Queue using Stacks - Easy
 

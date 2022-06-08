@@ -11,4 +11,4 @@ const defangIPaddr = (address) => {
 
 // 40ms and 33.9mb
 
-defangIPaddr('1.1.1.1');
+defangIPaddr(`1.1.1.1`);

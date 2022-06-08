@@ -8,6 +8,6 @@ representation of a number.
 Return the decimal value of the number in the linked list.
 */
 
-const getDecimalValue = (head) => {
-    return;
-};
+// const getDecimalValue = (head) => {
+//     return;
+// };

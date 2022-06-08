@@ -6,6 +6,7 @@ the node at which the two lists intersect. If the two linked lists have
 no intersection at all, return null.
 */
 
+// eslint-disable-next-line no-unused-vars
 const getIntersectionNode = (headA, headB) => {
     let p1 = headA;
     let p2 = headB;
