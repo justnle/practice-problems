@@ -39,3 +39,4 @@ const find132pattern = (nums) => {
 };
 
 find132pattern([1, 2, 3, 4]); // false
+find132pattern([3, 1, 4, 2]); // true
