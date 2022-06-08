@@ -32,6 +32,7 @@ function sockMerchant(n, ar) {
         }
     }
 
+    // eslint-disable-next-line no-unused-vars
     for (const [key, value] of Object.entries(hash)) {
         const result = value / 2;
         pairs += Math.floor(result);

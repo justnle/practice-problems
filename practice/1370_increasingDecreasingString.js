@@ -19,7 +19,8 @@ Return the result string after sorting s with this algorithm.
 */
 
 const sortString = (s) => {
-    let sorted;
+    // let sorted;
+
     const alphabet = `abcdefghijklmnopqrstuvwxyz`;
     const hash = {};
 
