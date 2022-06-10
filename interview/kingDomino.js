@@ -77,6 +77,16 @@ const kingDomino = (board, crowns) => {
     let groupCount = 0;
     let points = 0;
 
+    if (
+        board.length === 0 ||
+        crowns.length === 0 ||
+        board.length !== crowns.length
+    ) {
+        return 0;
+    }
+
+    board = board.map((arr) => arr.map((tile) => tile.toLowerCase()));
+
     for (let i = 0; i < board.length; ++i) {
         for (let j = 0; j < board[i].length; ++j) {
             const type = board[i][j];
@@ -89,6 +99,10 @@ const kingDomino = (board, crowns) => {
                     },
                     crowns: crowns[i][j]
                 };
+
+                if (terrains[type].crowns > 3) {
+                    return 0;
+                }
             } else {
                 if (terrains[type].idx[i]) {
                     ++terrains[type].size;
@@ -130,9 +144,9 @@ const kingDomino = (board, crowns) => {
         }
     }
 
-    console.log(terrains);
-    console.log(points);
     return points;
 };
 
 kingDomino(board, crowns);
+
+export default kingDomino;
