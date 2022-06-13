@@ -129,7 +129,7 @@ const kingDomino = (board, crowns) => {
         for (let j = 0; j < board[i].length; ++j) {
             const type = board[i][j];
 
-            if (!terrains[type] && type) {
+            if (!terrains[type]) {
                 terrains[type] = {
                     size: 1,
                     idx: {
@@ -142,18 +142,10 @@ const kingDomino = (board, crowns) => {
                     return 0;
                 }
             } else {
-                // if (!type) {
-                //     return 0;
-                // }
-
-                console.log(terrains[type]);
                 if (terrains[type].idx[i]) {
                     ++terrains[type].size;
                     terrains[type].idx[i].push(j);
-
-                    if (crowns[i][j] !== 0) {
-                        terrains[type].crowns += crowns[i][j];
-                    }
+                    terrains[type].crowns += crowns[i][j];
                 } else {
                     if (
                         terrains[type].idx[i - 1] &&
@@ -161,10 +153,7 @@ const kingDomino = (board, crowns) => {
                     ) {
                         ++terrains[type].size;
                         terrains[type].idx[i] = [j];
-
-                        if (crowns[i][j] !== 0) {
-                            terrains[type].crowns += crowns[i][j];
-                        }
+                        terrains[type].crowns += crowns[i][j];
                     } else {
                         ++groupCount;
 
@@ -191,7 +180,7 @@ const kingDomino = (board, crowns) => {
     return points;
 };
 
-kingDomino(board, crowns);
-// kingDomino(bigBoard, bigCrowns);
+// kingDomino(board, crowns);
+kingDomino(bigBoard, bigCrowns);
 
 export default kingDomino;
