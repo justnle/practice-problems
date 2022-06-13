@@ -72,26 +72,64 @@ const crowns = [
     [0, 0, 1, 1, 0]
 ];
 
+const bigBoard = [
+    [`S`, `S`, `S`, `S`, `L`, `L`],
+    [`S`, `S`, `W`, `W`, `W`, `L`],
+    [`L`, `W`, `K`, `W`, `L`, `L`],
+    [`F`, `W`, `W`, `W`, `F`, `F`],
+    [`F`, `F`, `F`, `F`, `F`, `L`]
+];
+
+const bigCrowns = [
+    [0, 0, 0, 0, 0, 0],
+    [1, 0, 1, 1, 0, 1],
+    [1, 0, 0, 0, 1, 1],
+    [0, 0, 0, 1, 0, 0],
+    [0, 0, 1, 1, 0, 0]
+];
+
+const checkArr = (inputBoard, inputType) => {
+    const checkInput = (arr, type) => {
+        return arr.every((element) => typeof element === type);
+    };
+
+    for (const boardArr of inputBoard) {
+        return checkInput(boardArr, inputType);
+    }
+};
+
+const correctInput = (boardArr, crownsArr) => {
+    if (
+        boardArr.length === 0 ||
+        crownsArr.length === 0 ||
+        boardArr.length !== crownsArr.length ||
+        checkArr(boardArr, `string`) === false ||
+        checkArr(crownsArr, `number`) === false
+    ) {
+        return 0;
+    }
+};
+
 const kingDomino = (board, crowns) => {
     const terrains = {};
     let groupCount = 0;
     let points = 0;
 
-    if (
-        board.length === 0 ||
-        crowns.length === 0 ||
-        board.length !== crowns.length
-    ) {
+    if (correctInput(board, crowns) === 0) {
         return 0;
     }
 
-    board = board.map((arr) => arr.map((tile) => tile.toLowerCase()));
+    board = board.map((arr) =>
+        arr.map((tile) => {
+            return tile.toLowerCase();
+        })
+    );
 
     for (let i = 0; i < board.length; ++i) {
         for (let j = 0; j < board[i].length; ++j) {
             const type = board[i][j];
 
-            if (!terrains[type]) {
+            if (!terrains[type] && type) {
                 terrains[type] = {
                     size: 1,
                     idx: {
@@ -104,6 +142,11 @@ const kingDomino = (board, crowns) => {
                     return 0;
                 }
             } else {
+                // if (!type) {
+                //     return 0;
+                // }
+
+                console.log(terrains[type]);
                 if (terrains[type].idx[i]) {
                     ++terrains[type].size;
                     terrains[type].idx[i].push(j);
@@ -144,9 +187,11 @@ const kingDomino = (board, crowns) => {
         }
     }
 
+    console.log(terrains);
     return points;
 };
 
 kingDomino(board, crowns);
+// kingDomino(bigBoard, bigCrowns);
 
 export default kingDomino;
