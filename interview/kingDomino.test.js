@@ -49,7 +49,7 @@ test(`An empty board to be 0 points`, () => {
     expect(kingDomino([], testCrowns)).toBe(0);
 });
 
-test(`A board with an no testCrowns to be 0 points`, () => {
+test(`A board with no testCrowns to be 0 points`, () => {
     expect(kingDomino(testBoard, [])).toBe(0);
 });
 
@@ -112,16 +112,16 @@ test(`testBoard contains both upper and lowercase letters`, () => {
     ).toBe(44);
 });
 
-test(`testBoard contains numbers and letters`, () => {
+test(`testBoard containing numbers and letters is invalid`, () => {
     expect(kingDomino([[`K`, `1`, 4, `S`, `L`]], [[0, 0, 1, 1, 0]])).toBe(0);
 });
 
-test(`testCrowns contains strings of numbers and/or letters`, () => {
+test(`testCrowns contains strings of numbers and/or letters which is invalid`, () => {
     expect(kingDomino([[`S`, `s`, `L`, `l`, `W`]], [[1, `0`, 0, `S`, 1]])).toBe(
         0
     );
 });
 
-// test(`bigBoard and bigCrowns`, () => {
-//     expect(kingDomino(bigBoard, bigCrowns)).toBe(44);
-// });
+test(`bigBoard and bigCrowns`, () => {
+    expect(kingDomino(bigBoard, bigCrowns)).toBe(62);
+});
