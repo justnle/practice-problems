@@ -112,7 +112,7 @@ const correctInput = (boardArr, crownsArr) => {
 
 const kingDomino = (board, crowns) => {
     const terrains = {};
-    let groupCount = 0;
+    let groupCount = 1;
     let points = 0;
 
     if (correctInput(board, crowns) === 0) {
@@ -132,7 +132,7 @@ const kingDomino = (board, crowns) => {
             if (!terrains[type]) {
                 terrains[type] = {
                     size: 1,
-                    idx: {
+                    row: {
                         [i]: [j]
                     },
                     crowns: crowns[i][j]
@@ -142,28 +142,38 @@ const kingDomino = (board, crowns) => {
                     return 0;
                 }
             } else {
-                if (terrains[type].idx[i]) {
-                    ++terrains[type].size;
-                    terrains[type].idx[i].push(j);
+                const previousRow = terrains[type].row[i - 1];
+
+                if (terrains[type].row[i]) {
+                    terrains[type].row[i].push(j);
                     terrains[type].crowns += crowns[i][j];
-                } else {
-                    if (
-                        terrains[type].idx[i - 1] &&
-                        terrains[type].idx[i - 1].includes(j)
-                    ) {
+
+                    if (terrains[type].row[i].includes(j - 1)) {
                         ++terrains[type].size;
-                        terrains[type].idx[i] = [j];
+                    } else {
+                        if (previousRow && previousRow.includes(j)) {
+                            ++terrains[type].size;
+                        }
+
+                        if (board[i][j + 1] === board[i][j]) {
+                            ++terrains[type].size;
+                        }
+                    }
+                } else {
+                    terrains[type].row[i] = [j];
+
+                    if (previousRow && previousRow.includes(j)) {
+                        ++terrains[type].size;
                         terrains[type].crowns += crowns[i][j];
                     } else {
-                        ++groupCount;
-
                         terrains[`${type}-${groupCount}`] = {
                             size: 1,
-                            idx: {
+                            row: {
                                 [i]: [j]
                             },
                             crowns: crowns[i][j]
                         };
+                        ++groupCount;
                     }
                 }
             }
