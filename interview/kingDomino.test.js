@@ -23,12 +23,6 @@ const testCrowns = [
     [0, 0, 1, 1, 0]
 ];
 
-/*
-s6
-w24
-l15
-f16
-*/
 const bigBoard = [
     [`S`, `S`, `S`, `S`, `L`, `L`],
     [`S`, `S`, `W`, `W`, `W`, `L`],
